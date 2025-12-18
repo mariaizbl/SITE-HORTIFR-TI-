@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenGo - Frescor da Feira</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Cabeçalho  -->
+<header class="topo">
+  <div class="logo">
+    <img src="img/logo_greengou-removebg-preview.png" alt="Greengo" style="height: 50px; cursor: pointer;">
+    <span class="logo-texto">Greengo</span>
+  </div>
+
+  <!-- Menu de navegação  -->
+  <nav class="menu-links">
+    <a href="#inicio">Início</a>
+    <a href="#ofertas">Ofertas</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#" id="btn-conta">Minha Conta</a>
+  </nav>
+
+  <div class="icons">
+    <!-- Campo de Pesquisa -->
+    <div class="search-container">
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Buscar produtos..." 
+        aria-label="Buscar produtos"
+        autocomplete="off"
+      >
+      <button id="search-btn" aria-label="Pesquisar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+    
+    <div class="cart-icon" role="button" aria-label="Carrinho de compras" tabindex="0">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span class="cart-counter" id="cart-counter">0</span>
+    </div>
+  </div>
+</header>
+
+<!-- Banner Simples -->
+<section id="inicio" class="banner">
+  <div class="banner-texto">
+    <h1 class="hero-title">
+      <span class="hero-line-1">Frescor da Feira,</span>
+      <span class="hero-line-2">na Sua Casa</span>
+    </h1>
+    <p class="hero-subtitle">Produtos frescos e saudáveis direto para sua porta</p>
+    <button class="cta-button" onclick="scrollToProducts()">
+      Ver Produtos
+      <i class="fas fa-arrow-right"></i>
+    </button>
+  </div>
+</section><hr class="horizontallinha">
+
+<!-- Seção de Ofertas -->
+<section id="ofertas" class="ofertas">
+  <h2>Ofertas Especiais</h2>
+  <p class="ofertas-subtitulo">Aproveite nossos preços promocionais!</p>
+  <div class="grid" id="ofertas-grid">
+    <div class="produto oferta">
+      <img src="img/maça-gala.jpeg" alt="Maçã Gala em oferta">
+      <h3>Maçã Gala</h3>
+      <p class="preco-antigo">R$ 5,99/kg</p>
+      <p class="preco-oferta">R$ 4,79/kg</p>
+      <button onclick="adicionarAoCarrinho('Maçã Gala (Oferta)', '4.79')">Adicionar</button>
+    </div>
+    <div class="produto oferta">
+      <img src="img/morango.jpg" alt="Morango em oferta">
+      <h3>Morango</h3>
+      <p class="preco-antigo">R$ 10,22/kg</p>
+      <p class="preco-oferta">R$ 8,69/kg</p>
+      <button onclick="adicionarAoCarrinho('Morango (Oferta)', '8.69')">Adicionar</button>
+    </div>
+    <div class="produto oferta">
+      <img src="img/tomates.jpg" alt="Tomate em oferta">
+      <h3>Tomate</h3>
+      <p class="preco-antigo">R$ 6,99/kg</p>
+      <p class="preco-oferta">R$ 5,24/kg</p>
+      <button onclick="adicionarAoCarrinho('Tomate (Oferta)', '5.24')">Adicionar</button>
+    </div>
+    <div class="produto oferta">
+      <img src="img/uvas.jpg" alt="Uva em oferta">
+      <h3>Uva</h3>
+      <p class="preco-antigo">R$ 12,50/kg</p>
+      <p class="preco-oferta">R$ 10,25/kg</p>
+      <button onclick="adicionarAoCarrinho('Uva (Oferta)', '10.25')">Adicionar</button>
+    </div>
+    <div class="produto oferta">
+      <img src="img/melancia.jpg" alt="Melancia em oferta">
+      <h3>Melancia</h3>
+      <p class="preco-antigo">R$ 8,90/un</p>
+      <p class="preco-oferta">R$ 6,94/un</p>
+      <button onclick="adicionarAoCarrinho('Melancia (Oferta)', '6.94')">Adicionar</button>
+    </div>
+  </div>
+</section><hr>
+
+<!-- Produtos  -->
+<section id="produtos" class="produtos">
+  <h2>Nossos Produtos</h2>
+  
+  <!-- Filtros de Categoria -->
+  <div class="filtros-categoria">
+    <button class="filtro-btn active" data-categoria="todos" onclick="filtrarPorCategoria('todos')">
+      <i class="fas fa-th"></i> Todos
+    </button>
+    <button class="filtro-btn" data-categoria="frutas" onclick="filtrarPorCategoria('frutas')">
+      <i class="fas fa-apple-alt"></i> Frutas
+    </button>
+    <button class="filtro-btn" data-categoria="legumes" onclick="filtrarPorCategoria('legumes')">
+      <i class="fas fa-carrot"></i> Legumes
+    </button>
+    <button class="filtro-btn" data-categoria="verduras" onclick="filtrarPorCategoria('verduras')">
+      <i class="fas fa-leaf"></i> Verduras
+    </button>
+    
+  </div>
+
+  <div class="grid" id="produtos-grid">
+    <!-- FRUTAS -->
+    <div class="produto" data-name="banana" data-categoria="frutas">
+      <img src="img/bananas.jpg" alt="Banana">
+      <h3>Banana</h3>
+      <p>R$ 4,99/kg</p>
+      <button onclick="adicionarAoCarrinho('Banana', '4.99')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="laranja" data-categoria="frutas">
+      <img src="img/laranjas.jpg" alt="Laranja">
+      <h3>Laranja</h3>
+      <p>R$ 5,20/kg</p>
+      <button onclick="adicionarAoCarrinho('Laranja', '5.20')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="maçã gala" data-categoria="frutas">
+      <img src="img/maça-galaaavif.avif" alt="Maçã Gala">
+      <h3>Maçã Gala</h3>
+      <p>R$ 5,99/kg</p>
+      <button onclick="adicionarAoCarrinho('Maçã Gala', '5.99')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="melancia" data-categoria="frutas">
+      <img src="img/melancia.jpg" alt="Melancia">
+      <h3>Melancia</h3>
+      <p>R$ 8,90/un</p>
+      <button onclick="adicionarAoCarrinho('Melancia', '8.90')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="morango" data-categoria="frutas">
+      <img src="img/morango.jpg" alt="Morango">
+      <h3>Morango</h3>
+      <p>R$ 10,22/kg</p>
+      <button onclick="adicionarAoCarrinho('Morango', '10.22')">Adicionar</button>
+    </div>
+
+    <!-- LEGUMES -->
+    <div class="produto" data-name="abóbora" data-categoria="legumes">
+      <img src="img/abobrinha.jpg" alt="Abóbora">
+      <h3>Abóbora</h3>
+      <p>R$ 4,80/kg</p>
+      <button onclick="adicionarAoCarrinho('Abóbora', '4.80')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="batata" data-categoria="legumes">
+      <img src="img/batatas.jpg" alt="Batata">
+      <h3>Batata</h3>
+      <p>R$ 3,50/kg</p>
+      <button onclick="adicionarAoCarrinho('Batata', '3.50')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="cenoura" data-categoria="legumes">
+      <img src="img/cenouraas.jpg" alt="Cenoura">
+      <h3>Cenoura</h3>
+      <p>R$ 4,50/kg</p>
+      <button onclick="adicionarAoCarrinho('Cenoura', '4.50')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="repolho" data-categoria="legumes">
+      <img src="img/repolho.jpg" alt="Repolho">
+      <h3>Repolho</h3>
+      <p>R$ 3,20/un</p>
+      <button onclick="adicionarAoCarrinho('Repolho', '3.20')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="tomate" data-categoria="legumes">
+      <img src="img/tomate.jpg" alt="Tomate">
+      <h3>Tomate</h3>
+      <p>R$ 6,99/kg</p>
+      <button onclick="adicionarAoCarrinho('Tomate', '6.99')">Adicionar</button>
+    </div>
+
+    <!-- VERDURAS  -->
+    <div class="produto" data-name="acelga" data-categoria="verduras">
+      <img src="img/acelgaa.jpg" alt="Acelga">
+      <h3>Acelga</h3>
+      <p>R$ 3,50/maço</p>
+      <button onclick="adicionarAoCarrinho('Acelga', '3.50')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="alface crespa" data-categoria="verduras">
+      <img src="img/alface.jpg" alt="Alface">
+      <h3>Alface Crespa</h3>
+      <p>R$ 3,99/un</p>
+      <button onclick="adicionarAoCarrinho('Alface Crespa', '3.99')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="couve" data-categoria="verduras">
+      <img src="img/couve.jpg" alt="Couve">
+      <h3>Couve</h3>
+      <p>R$ 2,99/maço</p>
+      <button onclick="adicionarAoCarrinho('Couve', '2.99')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="espinafre" data-categoria="verduras">
+      <img src="img/espinafre.jpg" alt="Espinafre">
+      <h3>Espinafre</h3>
+      <p>R$ 4,20/maço</p>
+      <button onclick="adicionarAoCarrinho('Espinafre', '4.20')">Adicionar</button>
+    </div>
+    <div class="produto" data-name="rúcula" data-categoria="verduras">
+      <img src="img/rucula.jpg" alt="Rúcula">
+      <h3>Rúcula</h3>
+      <p>R$ 3,80/maço</p>
+      <button onclick="adicionarAoCarrinho('Rúcula', '3.80')">Adicionar</button>
+    </div>
+  </div>
+  <div id="no-results" class="no-results" style="display: none;">
+    <p>Nenhum produto encontrado para sua busca.</p>
+  </div>
+</section> <hr>
+
+<!-- Sobre -->
+<section id="sobre" class="sobre">
+  <h2>Sobre a Greengo</h2>
+  <div class="sobre-content">
+    <p>A Greengo é uma empresa dedicada a trazer produtos frescos e saudáveis diretamente da feira para sua casa.</p>
+    <p>Nosso compromisso é com a qualidade, frescor e sustentabilidade.</p>
+    
+    <div class="valores-container">
+      <div class="valor-card">
+        <h3><i class="fas fa-bullseye"></i> Missão</h3>
+        <p>Proporcionar acesso fácil e conveniente a produtos frescos e saudáveis, conectando produtores locais aos consumidores, promovendo uma alimentação de qualidade e sustentável.</p>
+      </div>
+      
+      <div class="valor-card">
+        <h3><i class="fas fa-eye"></i> Visão</h3>
+        <p>Ser referência nacional em distribuição de produtos frescos, reconhecida pela excelência no atendimento, qualidade dos produtos e compromisso com a sustentabilidade.</p>
+      </div>
+      
+      <div class="valor-card">
+        <h3><i class="fas fa-heart"></i> Valores</h3>
+        <ul>
+          <li><strong>Qualidade:</strong> Produtos selecionados com rigor</li>
+          <li><strong>Sustentabilidade:</strong> Respeito ao meio ambiente</li>
+          <li><strong>Transparência:</strong> Honestidade em todas as relações</li>
+          <li><strong>Compromisso:</strong> Dedicação aos nossos clientes</li>
+          <li><strong>Inovação:</strong> Sempre buscando melhorias</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="conceitos">
+      <h3>Por que escolher a Greengo?</h3>
+      <ul>
+        <li>Produtos frescos diariamente</li>
+        <li>Entrega rápida e segura</li>
+        <li>Preços justos e acessíveis</li>
+        <li>Compromisso com sustentabilidade</li>
+        <li>Atendimento personalizado</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Formulário do Carrinho -->
+<div id="form-carrinho" class="form-carrinho" style="display: none;">
+  <div class="form-content">
+    <span class="close-form" onclick="fecharFormCarrinho()">&times;</span>
+    <h2>🛒 Finalizar Compra</h2>
+    
+    <div class="carrinho-section">
+      <h3>Itens do Carrinho</h3>
+      <div id="itens-carrinho">
+        <p class="carrinho-vazio">Carrinho vazio</p>
+      </div>
+      
+      <div class="total">
+        <strong>💰 Total: R$ <span id="total-carrinho">0,00</span></strong>
+      </div>
+    </div>
+    
+    <form id="form-compra">
+      <h3>📋 Informações do Cliente</h3>
+      <input type="text" name="nome" placeholder="Nome Completo *" required aria-label="Nome completo">
+      <input type="email" name="email" placeholder="E-mail *" required aria-label="E-mail">
+      <input type="tel" name="telefone" placeholder="Telefone *" required aria-label="Telefone">
+      
+      <h3>📍 Endereço de Entrega</h3>
+      <input type="text" name="endereco" placeholder="Endereço *" required aria-label="Endereço">
+      <input type="text" name="numero" placeholder="Número *" required aria-label="Número">
+      <input type="text" name="complemento" placeholder="Complemento" aria-label="Complemento">
+      <input type="text" name="bairro" placeholder="Bairro *" required aria-label="Bairro">
+      <input type="text" name="cidade" placeholder="Cidade *" required aria-label="Cidade">
+      <input type="text" name="cep" placeholder="CEP *" required aria-label="CEP">
+      
+      <button type="submit" class="btn-finalizar">
+        📱 Finalizar via WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Login/Cadastro -->
+<div id="modal-conta" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal()">&times;</span>
+    <div id="tela-login" class="card">
+      <h2>Login</h2>
+      <form id="login-form">
+        <input type="text" placeholder="Usuário" required aria-label="Usuário">
+        <input type="password" placeholder="Senha" required aria-label="Senha">
+        <button type="submit">Entrar</button>
+      </form>
+      <p>Não tem conta? <a href="#" onclick="mostrarCadastro()">Cadastre-se</a></p>
+    </div>
+    
+    <div id="tela-cadastro" class="card" style="display: none;">
+      <h2>Cadastro</h2>
+      <form id="cadastro-form">
+        <input type="text" placeholder="Nome Completo" required aria-label="Nome completo">
+        <input type="text" placeholder="Usuário" required aria-label="Usuário">
+        <input type="email" placeholder="E-mail" required aria-label="E-mail">
+        <input type="password" placeholder="Senha" required aria-label="Senha">
+        <button type="submit">Cadastrar</button>
+      </form>
+      <p>Já tem conta? <a href="#" onclick="mostrarLogin()">Faça login</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- Rodapé -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Green Go S/A</h3>
+      <p>Rua Marques de Abrantes, 192, Bloco 1, Loja A.<br>
+      CNPJ nº 00.776.574/1975-10</p>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Nossos Canais de Atendimento</h3>
+      <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection#7a1915140e1b0e153a1d081f1f141d1554191517541808"><span class="__cf_email__" data-cfemail="c3a0acadb7a2b7ac83a4b1a6a6ada4aceda0acaeeda1b1">[email&#160;protected]</span></a></p>
+      <p><i class="fas fa-phone"></i> (11) 9999-8888</p>
+      <p><i class="fas fa-phone"></i> (11) 7777-6666</p>
+      <p><i class="fas fa-clock"></i> Segunda a Sexta: 8h às 18h</p>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; 2025 Greengo - Todos os direitos reservados</p>
+  </div>
+</footer>
+
+<!-- ÍCONE DE LIBRAS -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+<script src="script.js"></script>
+
+</body>
+</html>
